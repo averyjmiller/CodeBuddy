@@ -1,7 +1,7 @@
 {
   "name": "code-buddy",
   "version": "1.0.0",
-  "description": "A message translator application that automatically converts the sender's message to the receiver's primary language for them to read and understand.",
+  "description": "A gamified productivity app that helps developers build consistent coding habits by feeding and evolving a virtual pet based on their daily GitHub commits. Built with the MERN stack.",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js --ignore client",
