@@ -8,7 +8,7 @@ const profileSchema = new Schema({
     unique: true,
     trim: true,
     minLength: [3, "Username must have more than 3 characters!"],
-    maxLength: [15, "Username cannot be more than 15 characters!"],
+    maxLength: [30, "Username cannot be more than 15 characters!"],
     match: [/\S/, "Username cannot have spaces!"]
   },
   email: {
@@ -20,10 +20,10 @@ const profileSchema = new Schema({
   password: {
     type: String,
     required: true,
-    match: [
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-      "Password must have six characters, at least one uppercase letter, one lowercase letter, one number and one special character!",
-    ],
+    // match: [
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+    //   "Password must have six characters, at least one uppercase letter, one lowercase letter, one number and one special character!",
+    // ],
   }
 });
 

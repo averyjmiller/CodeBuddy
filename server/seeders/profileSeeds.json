@@ -1,20 +1,32 @@
 [
   {
-    "username": "johndoe"
+    "username": "johndoe",
+    "email": "johndoe@gmail.com",
+    "password": "ASjfskl1256d#"
   },
   {
-    "username": "janedoe"
+    "username": "janedoe",
+    "email": "janedoe123@yahoo.com",
+    "password": "gd54$dsfSDF"
   },
   {
-    "username": "catlover"
+    "username": "catlover",
+    "email": "catlover@gmail.com",
+    "password": "sffggre1315SDF#"
   },
   {
-    "username": "firestone123"
+    "username": "firestone123",
+    "email": "firestone123@yahoo.com",
+    "password": "$KJUBN9u0njnsd"
   },
   {
-    "username": "xxsallyxx"
+    "username": "xxsallyxx",
+    "email": "xxxsallyxxx@yahoo.com",
+    "password": "hkjbdfjh78&*bkjbsaFFEA"
   },
   {
-    "username": "mister_impossible"
+    "username": "mister_impossible",
+    "email": "misterimpossible@gmail.com",
+    "password": "dsjhgf9878*&&&*bJHGJH"
   }
 ]
