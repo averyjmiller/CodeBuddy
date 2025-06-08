@@ -7,8 +7,8 @@ const profileSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
-    minLength: [3, "Username must have more than 3 characters!"],
-    maxLength: [30, "Username cannot be more than 15 characters!"],
+    minLength: [4, "Username must be at least 4 characters!"],
+    maxLength: [25, "Username cannot be more than 25 characters!"],
     match: [/\S/, "Username cannot have spaces!"]
   },
   email: {
@@ -20,11 +20,23 @@ const profileSchema = new Schema({
   password: {
     type: String,
     required: true,
-    // match: [
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-    //   "Password must have six characters, at least one uppercase letter, one lowercase letter, one number and one special character!",
-    // ],
-  }
+    minLength: [6, "Password must be at least 6 characters!"],
+  },
+  githubId: { type: String },
+  profileImage: { type: String },
+  streakCount: { type: Number, default: 0 },
+  lastCommitDate: { type: Date },
+  pet: {
+    type: String,
+    default: 'newborn'
+  },
+  points: { type: Number, default: 0 },
+  settings: {
+    notifications: { type: Boolean, default: true },
+    theme: { type: String, default: 'light' }
+  },
+  createdAt: { type: Date, default: Date.now },
+  lastLogin: { type: Date }
 });
 
 profileSchema.pre('save', async function (next) {
