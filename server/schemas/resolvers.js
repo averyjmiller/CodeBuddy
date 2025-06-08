@@ -1,5 +1,6 @@
 const { Profile } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const axios = require("axios");
 
 const resolvers = {
   Query: {
@@ -20,79 +21,54 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { username, email, password }) => {
-      const profile = await Profile.create({
-        username,
-        email,
-        password,
-      });
-      const token = signToken(profile);
-
-      return { token, profile };
-    },
-
-    login: async (parent, { email, password }) => {
-      const profile = await Profile.findOne({ email });
-
-      if (!profile) {
-        throw new AuthenticationError("We couldn't find a profile with that email");
-      }
-
-      const correctPw = await profile.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect password");
-      }
-
-      const token = signToken(profile);
-      return { token, profile };
-    },
-
-    updatePassword: async (parent, { newPassword }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { password: newPassword },
+    githubLogin: async (parent, { code }) => {
+      try {
+        // Send a POST request to GitHub to exchange the code for an access token
+        const { data } = await axios.post(
+          'https://github.com/login/oauth/access_token',
           {
-            new: true,
-            runValidators: true,
-          }
+            client_id: process.env.GITHUB_CLIENT_ID, // GitHub OAuth app's client ID
+            client_secret: process.env.GITHUB_CLIENT_SECRET, // GitHub OAuth app's secret
+            code, // One-time code GitHub gives after the user authorizes the app
+          },
+          { headers: { Accept: 'application/json' } } // GitHub will return JSON instead of default URL-encoded string
         );
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
 
-    updateEmail: async (parent, { newEmail }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { email: newEmail },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+        const accessToken = data.data.access_token;
+
+        // Use the access token to fetch the user's GitHub profile info
+        const { data: githubUser } = await axios.get('https://api.github.com/user', {
+          headers: { Authorization: `token ${accessToken}` }, // Pass the access token in the header
+        });
+
+        // Look for an existing user with this GitHub ID in DB
+        let user = await Profile.findOne({ githubId: githubUser.id })
+
+        // If no user exists, create a new profile using GitHub data
+        if(!user) {
+          user = await Profile.create({
+            githubId: githubUser.id,
+            githubAccessToken: accessToken,
+            username: githubUser.login,
+            avatarUrl: githubUser.avatar_url,
+            email: githubUser.email
+          });
+        }
+
+        // Create a JWT token for user
+        const token = signToken(user);
+
+        return { token, profile: user };
+
+      } catch (err) {
+        console.error(err);
+        throw new Error('GitHub login failed.');
       }
-      throw new AuthenticationError("You need to be logged in!");
     },
 
     removeProfile: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-    updateUsername: async (parent, { newUsername }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { username: newUsername },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
       }
       throw new AuthenticationError("You need to be logged in!");
     },

@@ -1,10 +1,10 @@
 const typeDefs = `
   type Profile {
     _id: ID!
+    githubId: String!
     username: String!
     email: String!
-    githubId: String
-    profileImage: String
+    avatarUrl: String
     streakCount: Int
     lastCommitDate: String
     pet: String
@@ -30,13 +30,15 @@ const typeDefs = `
     me: Profile
   }
 
-  type Mutation {
-    addProfile(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+  type GithubAuthResponse {
+    accessToken: String!
+    login: String!
+    githubId: ID!
+    avatarUrl: String
+  }
 
-    updatePassword(newPassword: String!): Profile
-    updateEmail(newEmail: String!): Profile
-    updateUsername(newUsername: String!): Profile
+  type Mutation {
+    githubLogin(code: String!): GithubAuthResponse
     removeProfile: Profile
 
     updatePet(pet: String!): Profile
