@@ -24,7 +24,7 @@ const resolvers = {
     githubLogin: async (parent, { code }) => {
       try {
         // Send a POST request to GitHub to exchange the code for an access token
-        const { data } = await axios.post(
+        const res = await axios.post(
           'https://github.com/login/oauth/access_token',
           {
             client_id: process.env.GITHUB_CLIENT_ID, // GitHub OAuth app's client ID
@@ -34,7 +34,7 @@ const resolvers = {
           { headers: { Accept: 'application/json' } } // GitHub will return JSON instead of default URL-encoded string
         );
 
-        const accessToken = data.data.access_token;
+        const accessToken = res.data.access_token;
 
         // Use the access token to fetch the user's GitHub profile info
         const { data: githubUser } = await axios.get('https://api.github.com/user', {
