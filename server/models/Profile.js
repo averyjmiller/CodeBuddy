@@ -27,8 +27,8 @@ const profileSchema = new Schema({
   streakCount: { type: Number, default: 0 },
   lastCommitDate: { type: Date },
   pet: {
-    type: String,
-    default: 'newborn'
+    type: Schema.Types.ObjectId,
+    ref: 'Pet'
   },
   points: { type: Number, default: 0 },
   settings: {

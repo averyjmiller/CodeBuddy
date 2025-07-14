@@ -1,3 +1,4 @@
 const Profile = require('./Profile');
+const Pet = require('./Pet');
 
-module.exports = { Profile };
+module.exports = { Profile, Pet };
