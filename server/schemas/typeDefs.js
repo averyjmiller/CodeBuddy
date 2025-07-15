@@ -6,17 +6,26 @@ const typeDefs = `
     email: String!
     avatarUrl: String
     streakCount: Int
-    lastCommitDate: String
-    pet: String
+    lastCommitDate: Date
+    pets: [Pet]
     points: Int
     settings: UserSettings
-    createdAt: String
-    lastLogin: String
+    createdAt: Date
+    lastLogin: Date
   }
 
-  type Auth {
-    token: ID!
-    profile: Profile
+  type Pet {
+    _id: ID!
+    name: String!
+    breed: String!
+    birthday: Date
+    lastFed: Date
+    mood: String
+    isActive: Boolean
+    isAbandoned: Boolean
+    growthStage: Int
+    commitCount: Int
+    owner: [Profile]
   }
 
   type UserSettings {
@@ -30,18 +39,16 @@ const typeDefs = `
     me: Profile
   }
 
-  type GithubAuthResponse {
-    accessToken: String!
-    login: String!
-    githubId: ID!
-    avatarUrl: String
+  type Auth {
+  token: String!
+  profile: Profile!
   }
 
   type Mutation {
-    githubLogin(code: String!): GithubAuthResponse
+    githubLogin(code: String!): Auth
     removeProfile: Profile
 
-    updatePet(pet: String!): Profile
+    updateLastCommit(date: Date!): Profile
     updateStreak: Profile
   }
 `;

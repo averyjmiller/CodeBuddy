@@ -72,6 +72,17 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    updateLastCommit: async (parent, { date }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { lastCommitDate: date },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    }
   },
 };
 
