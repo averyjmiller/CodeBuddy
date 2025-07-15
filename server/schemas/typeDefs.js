@@ -7,6 +7,8 @@ const typeDefs = `
     avatarUrl: String
     streakCount: Int
     lastCommitDate: Date
+    lastCommitRepo: String
+    lastCommitMessage: String
     pets: [Pet]
     points: Int
     settings: UserSettings
@@ -48,7 +50,7 @@ const typeDefs = `
     githubLogin(code: String!): Auth
     removeProfile: Profile
 
-    updateLastCommit(date: Date!): Profile
+    updateLastCommit(date: Date!, repo: String, message: String): Profile
     updateStreak: Profile
   }
 `;

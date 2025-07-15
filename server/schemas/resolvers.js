@@ -73,11 +73,13 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateLastCommit: async (parent, { date }, context) => {
+    updateLastCommit: async (parent, { date, repo, message }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
           { lastCommitDate: date },
+          { lastCommitRepo: repo },
+          { lastCommitMessage: message },
           { new: true }
         );
       }

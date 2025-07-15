@@ -26,6 +26,8 @@ const profileSchema = new Schema({
   avatarUrl: { type: String },
   streakCount: { type: Number, default: 0 },
   lastCommitDate: { type: Date },
+  lastCommitRepo: { type: String },
+  lastCommitMessage: { type: String },
   pets: {
     type: Schema.Types.ObjectId,
     ref: 'Pet'
