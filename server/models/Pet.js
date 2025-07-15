@@ -21,12 +21,20 @@ const petSchema = new Schema({
   },
   mood: {
     type: String,
-    enum: ['happy', 'hungry', 'starving', 'eternal slumber', 'evolving'],
+    enum: ['happy', 'hungry', 'starving', 'sad', 'evolving'],
     default: 'happy'
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  isAbandoned: {
+    type: Boolean,
+    default: false
   },
   growthStage: {
     type: Number,
-    default: 1
+    default: 0
   },
   commitCount: {
     type: Number,
