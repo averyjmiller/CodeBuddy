@@ -1,8 +1,25 @@
 const { Profile } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const axios = require("axios");
+const { GraphQLScalarType, Kind } = require('graphql');
+
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  description: 'Custom Date scalar type',
+  serialize(value) {
+    return value instanceof Date ? value.toISOString() : null;
+  },
+  parseValue(value) {
+    return new Date(value);
+  },
+  parseLiteral(ast) {
+    return ast.kind === Kind.STRING ? new Date(ast.value) : null;
+  },
+});
 
 const resolvers = {
+  Date: dateScalar,
+
   Query: {
     profiles: async () => {
       return Profile.find();

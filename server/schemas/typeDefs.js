@@ -1,4 +1,6 @@
 const typeDefs = `
+  scalar Date
+
   type Profile {
     _id: ID!
     githubId: String!
