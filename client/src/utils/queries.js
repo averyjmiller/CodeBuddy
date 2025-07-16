@@ -1,12 +1,47 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PROFILES = gql`
-  query profiles {
+  query allProfiles {
     profiles {
       _id
       username
       avatarUrl
       streakCount
+      lastCommitDate
+      pets
+      points
+    }
+  }
+`;
+
+export const QUERY_SINGLE_PROFILE = gql`
+  query singleProfile($profileId: ID!) {
+    profile(profileId: $profileId) {
+      _id
+      username
+      avatarUrl
+      streakCount
+      lastCommitDate
+      pets
+      points
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      avatarUrl
+      streakCount
+      lastCommitDate
+      lastCommitRepo
+      lastCommitMessage
+      pets
+      points
+      settings
+      createdAt
     }
   }
 `;
