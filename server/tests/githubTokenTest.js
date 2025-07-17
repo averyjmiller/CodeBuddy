@@ -6,8 +6,6 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
-// https://github.com/login/oauth/authorize?client_id=Ov23livBeMzx3usuz5MG&redirect_uri=http://localhost:3001/github/callback&scope=user,repo&state=xyz456
-
 // Replace with the code you receive from GitHub after login
 const code = '<Your Code>';
 
