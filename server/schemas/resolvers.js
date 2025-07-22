@@ -90,15 +90,44 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateLastCommit: async (parent, { date, repo, message }, context) => {
+    updateUserInfo: async (parent, args, context) => {
       if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { lastCommitDate: date },
-          { lastCommitRepo: repo },
-          { lastCommitMessage: message },
-          { new: true }
-        );
+        const profile = await Profile.findOne({ _id: context.user._id });
+
+        if (!profile) {
+          throw AuthenticationError;
+        }
+
+        const accessToken = await profile.decryptAccessToken();
+
+        const userEvents = await axios.get(`https://api.github.com/users/${username}/events`, {
+          headers: { Authorization: `token ${accessToken}` }, // Pass the access token in the header
+        });
+
+        let search = true;
+        let i = 0;
+
+        let date;
+        let repo;
+        let message;
+// TO DO: Change commit info into a single array in the profile schema and fetch and store all recent commit info in the array
+        while (search && i < userEvents.length()) {
+          if (userEvents[i].type == "PushEvent") {
+            date = userEvents[i].created_at;
+            repo = userEvents[i].repo.name;
+            message = userEvents[i].payload.commits[0].message;
+            search = false;
+            Profile.findOneAndUpdate(
+              { _id: context.user._id },
+              { lastCommitDate: date },
+              { lastCommitRepo: repo },
+              { lastCommitMessage: message },
+              { new: true }
+            );
+          }
+          i++;
+        }
+        return 
       }
       throw AuthenticationError;
     }

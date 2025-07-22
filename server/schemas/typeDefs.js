@@ -52,8 +52,7 @@ const typeDefs = `
     githubLogin(code: String!): Auth
     removeProfile: Profile
 
-    updateLastCommit(date: Date!, repo: String, message: String): Profile
-    updateStreak: Profile
+    updateUserInfo: Profile
   }
 `;
 
