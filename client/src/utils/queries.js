@@ -38,9 +38,7 @@ export const QUERY_ME = gql`
       lastCommitDate
       lastCommitRepo
       lastCommitMessage
-      pets
       points
-      settings
       createdAt
     }
   }

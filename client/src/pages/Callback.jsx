@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GITHUB_LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 export default function GitHubCallback() {
   const [githubLogin] = useMutation(GITHUB_LOGIN);
@@ -13,9 +14,8 @@ export default function GitHubCallback() {
     if (code) {
       githubLogin({ variables: { code } })
         .then(({ data }) => {
-          const token = data.githubLogin.token;
-          localStorage.setItem('id_token', token);
-          navigate('/');
+          Auth.login(data.githubLogin.token)
+          // navigate('/');
         })
         .catch(err => {
           console.error('GitHub login failed:', err);

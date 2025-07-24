@@ -21,9 +21,9 @@ export const REMOVE_PROFILE = gql`
   }
 `;
 
-export const UPDATE_COMMIT = gql`
-  mutation updateLastCommit($date: Date!, $repo: String, $message: String) {
-    updateLastCommit(date: $date, repo: $repo, message: $message) {
+export const UPDATE_USER = gql`
+  mutation updateUserInfo {
+    updateUserInfo {
       _id
       username
       lastCommitDate
