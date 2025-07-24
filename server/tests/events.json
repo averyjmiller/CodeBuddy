@@ -1,0 +1,182 @@
+[
+  {
+    "id": "52368098339",
+    "type": "PushEvent",
+    "actor": {
+      "id": 54604339,
+      "login": "averyjmiller",
+      "display_login": "averyjmiller",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/averyjmiller",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54604339?"
+    },
+    "repo": {
+      "id": 998072996,
+      "name": "averyjmiller/CodeBuddy",
+      "url": "https://api.github.com/repos/averyjmiller/CodeBuddy"
+    },
+    "payload": {
+      "repository_id": 998072996,
+      "push_id": 25639180326,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "ae4a91aa22bb06b183644081b20e7c83a8e65c5d",
+      "before": "3c19cad767cd599ac7517a8a11a098e22151bb7d",
+      "commits": [
+        {
+          "sha": "ae4a91aa22bb06b183644081b20e7c83a8e65c5d",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Add encryption for GitHub tokens",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/ae4a91aa22bb06b183644081b20e7c83a8e65c5d"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2025-07-22T02:14:42Z"
+  },
+  {
+    "id": "52135295733",
+    "type": "PushEvent",
+    "actor": {
+      "id": 54604339,
+      "login": "averyjmiller",
+      "display_login": "averyjmiller",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/averyjmiller",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54604339?"
+    },
+    "repo": {
+      "id": 998072996,
+      "name": "averyjmiller/CodeBuddy",
+      "url": "https://api.github.com/repos/averyjmiller/CodeBuddy"
+    },
+    "payload": {
+      "repository_id": 998072996,
+      "push_id": 25520886657,
+      "size": 6,
+      "distinct_size": 6,
+      "ref": "refs/heads/main",
+      "head": "88f5cba13ce07bb719b7ed4eee6e90702b344f8a",
+      "before": "70d52a5730389ac0a6c95ff69046d16ec513983d",
+      "commits": [
+        {
+          "sha": "a1d2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Implement login context and localStorage integration",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/a1d2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
+        },
+        {
+          "sha": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Fix bug in ApolloProvider setup",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1"
+        },
+        {
+          "sha": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Refactor Login component styling",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2"
+        },
+        {
+          "sha": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Add new context tests",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3"
+        },
+        {
+          "sha": "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3d4",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Update .env.example file",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3d4"
+        },
+        {
+          "sha": "f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3d4e5",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Clean up unused imports",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0a1b2c3d4e5"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2025-07-16T01:47:17Z"
+  },
+  {
+    "id": "52082862889",
+    "type": "PushEvent",
+    "actor": {
+      "id": 54604339,
+      "login": "averyjmiller",
+      "display_login": "averyjmiller",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/averyjmiller",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54604339?"
+    },
+    "repo": {
+      "id": 998072996,
+      "name": "averyjmiller/CodeBuddy",
+      "url": "https://api.github.com/repos/averyjmiller/CodeBuddy"
+    },
+    "payload": {
+      "repository_id": 998072996,
+      "push_id": 25495646788,
+      "size": 3,
+      "distinct_size": 3,
+      "ref": "refs/heads/main",
+      "head": "70d52a5730389ac0a6c95ff69046d16ec513983d",
+      "before": "51b811e0f09f854e714a6b67f1f60c8e130d0b1b",
+      "commits": [
+        {
+          "sha": "abc123abc123abc123abc123abc123abc123abcd",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Add login page UI",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/abc123abc123abc123abc123abc123abc123abcd"
+        },
+        {
+          "sha": "def456def456def456def456def456def456def4",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Create AuthContext provider",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/def456def456def456def456def456def456def4"
+        },
+        {
+          "sha": "123abc123abc123abc123abc123abc123abc1234",
+          "author": {
+            "email": "averyjmiller@example.com",
+            "name": "averyjmiller"
+          },
+          "message": "Wire up useContext with login page",
+          "url": "https://github.com/averyjmiller/CodeBuddy/commit/123abc123abc123abc123abc123abc123abc1234"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2025-07-15T01:22:03Z"
+  }
+]
