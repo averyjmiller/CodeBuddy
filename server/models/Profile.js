@@ -12,7 +12,6 @@ const profileSchema = new Schema({
   githubAccessToken: {
     type: String,
     required: true,
-    select: false
   },
   username: {
     type: String,

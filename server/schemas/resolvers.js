@@ -59,11 +59,11 @@ const resolvers = {
         });
 
         // Look for an existing user with this GitHub ID in DB
-        let user = await Profile.findOne({ githubId: githubUser.id })
+        let profile = await Profile.findOne({ githubId: githubUser.id })
 
         // If no user exists, create a new profile using GitHub data
-        if(!user) {
-          user = await Profile.create({
+        if(!profile) {
+          profile = await Profile.create({
             githubId: githubUser.id,
             githubAccessToken: accessToken,
             username: githubUser.login,
@@ -73,9 +73,9 @@ const resolvers = {
         }
 
         // Create a JWT token for user
-        const token = signToken(user);
+        const token = signToken(profile);
 
-        return { token, profile: user };
+        return { token, profile };
 
       } catch (err) {
         console.error(err);
@@ -100,10 +100,16 @@ const resolvers = {
 
         const accessToken = await profile.decryptAccessToken();
 
-        const userEvents = await axios.get(`https://api.github.com/users/${username}/events`, {
-          headers: { Authorization: `token ${accessToken}` }, // Pass the access token in the header
-        });
+        try {
+          const userEvents = await axios.get(`https://api.github.com/users/${profile.username}/events`, {
+            headers: { Authorization: `token ${accessToken}` },
+          });
+          console.log('GitHub user events:', userEvents.data);
+        } catch (err) {
+          console.error('Error fetching GitHub events:', err.response?.data || err.message);
+        }
 
+        
         let search = true;
         let i = 0;
 
@@ -127,6 +133,7 @@ const resolvers = {
           }
           i++;
         }
+        
         return 
       }
       throw AuthenticationError;
