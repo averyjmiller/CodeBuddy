@@ -104,37 +104,34 @@ const resolvers = {
           const userEvents = await axios.get(`https://api.github.com/users/${profile.username}/events`, {
             headers: { Authorization: `token ${accessToken}` },
           });
-          console.log('GitHub user events:', userEvents.data);
+          // console.log('GitHub user events:', userEvents.data);
+          let search = true;
+          let i = 0;
+        
+          while (search && i < userEvents.length) {
+            if (userEvents[i].type == "PushEvent") {
+
+              Profile.findOneAndUpdate(
+                { _id: context.user._id },
+                {
+                  $set: {
+                    "lastCommit.date": userEvents[i].created_at,
+                    "lastCommit.repo": userEvents[i].repo.name,
+                    "lastCommit.message": userEvents[i].payload.commits[0].message
+                  }
+                },
+                { new: true }
+              );
+              
+              search = false;
+            }
+            i++;
+          }
         } catch (err) {
           console.error('Error fetching GitHub events:', err.response?.data || err.message);
         }
 
-        
-        let search = true;
-        let i = 0;
-
-        let date;
-        let repo;
-        let message;
-// TO DO: Change commit info into a single array in the profile schema and fetch and store all recent commit info in the array
-        while (search && i < userEvents.length()) {
-          if (userEvents[i].type == "PushEvent") {
-            date = userEvents[i].created_at;
-            repo = userEvents[i].repo.name;
-            message = userEvents[i].payload.commits[0].message;
-            search = false;
-            Profile.findOneAndUpdate(
-              { _id: context.user._id },
-              { lastCommitDate: date },
-              { lastCommitRepo: repo },
-              { lastCommitMessage: message },
-              { new: true }
-            );
-          }
-          i++;
-        }
-        
-        return 
+        return;
       }
       throw AuthenticationError;
     }
