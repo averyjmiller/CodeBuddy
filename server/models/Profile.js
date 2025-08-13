@@ -24,23 +24,51 @@ const profileSchema = new Schema({
     unique: true,
     match: [/.+@.+\..+/, "Must match an email address!"],
   },
-  avatarUrl: { type: String },
-  streakCount: { type: Number, default: 0 },
+  avatarUrl: { 
+    type: String,
+    default: null
+  },
+  streakCount: { 
+    type: Number, 
+    default: 0 
+  },
   lastCommit: {
-    date: { type: Date },
-    repo: { type: String },
-    message: { type: String }
+    date: { 
+      type: Date,
+      default: null
+    },
+    repo: { 
+      type: String,
+      default: null
+    },
+    message: { 
+      type: String,
+      default: null
+    }
   },
   pets: {
     type: Schema.Types.ObjectId,
-    ref: 'Pet'
+    ref: 'Pet',
+    default: null
   },
-  points: { type: Number, default: 0 },
+  points: { 
+    type: Number, 
+    default: 0 
+  },
   settings: {
-    notifications: { type: Boolean, default: true },
-    theme: { type: String, default: 'light' }
+    notifications: { 
+      type: Boolean, 
+      default: true 
+    },
+    theme: { 
+      type: String, 
+      default: 'light' 
+    }
   },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  },
   lastLogin: { type: Date }
 });
 
