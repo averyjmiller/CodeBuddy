@@ -90,7 +90,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateUserInfo: async (parent, args, context) => {
+    updateUserCommits: async (parent, args, context) => {
       if (context.user) {
         const profile = await Profile.findOne({ _id: context.user._id });
 
@@ -105,13 +105,10 @@ const resolvers = {
             headers: { Authorization: `token ${accessToken}` },
           });
           // console.log('GitHub user events:', userEvents.data);
-          let search = true;
-          let i = 0;
-        
-          while (search && i < userEvents.length) {
+          for(i = 0; i < userEvents.length; i++) {
             if (userEvents[i].type == "PushEvent") {
 
-              Profile.findOneAndUpdate(
+              return Profile.findOneAndUpdate(
                 { _id: context.user._id },
                 {
                   $set: {
@@ -121,17 +118,12 @@ const resolvers = {
                   }
                 },
                 { new: true }
-              );
-              
-              search = false;
+              );        
             }
-            i++;
           }
         } catch (err) {
           console.error('Error fetching GitHub events:', err.response?.data || err.message);
         }
-
-        return;
       }
       throw AuthenticationError;
     }
