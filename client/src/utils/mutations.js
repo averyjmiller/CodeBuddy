@@ -22,8 +22,8 @@ export const REMOVE_PROFILE = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUserInfo {
-    updateUserInfo {
+  mutation updateUserCommits {
+    updateUserCommits {
       _id
       username
       lastCommitDate

@@ -101,11 +101,12 @@ const resolvers = {
         const accessToken = await profile.decryptAccessToken();
 
         try {
-          const userEvents = await axios.get(`https://api.github.com/users/${profile.username}/events`, {
+          const res = await axios.get(`https://api.github.com/users/${profile.username}/events`, {
             headers: { Authorization: `token ${accessToken}` },
           });
-          // console.log('GitHub user events:', userEvents.data);
-          for(i = 0; i < userEvents.length; i++) {
+          const userEvents = res.data;
+          console.log(userEvents);
+          for(let i = 0; i < userEvents.length; i++) {
             if (userEvents[i].type == "PushEvent") {
 
               return Profile.findOneAndUpdate(

@@ -12,7 +12,7 @@ export default function Home() {
 
   // console.log(userInfo);
 
-  const updateUserInfo = async () => {
+  const updateUserCommits = async () => {
     try {
       const data = await updateUser();
       console.log(data);
@@ -27,7 +27,7 @@ export default function Home() {
       <a href={`https://github.com/login/oauth/authorize?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:3000/github/callback&scope=read:user user:email`}>
         <button>Login with GitHub</button>
       </a>
-      <button onClick={updateUserInfo}></button>
+      <button onClick={updateUserCommits}></button>
       {/* {loading ? (
         <div>Loading...</div>
       ) : userInfo ? (
